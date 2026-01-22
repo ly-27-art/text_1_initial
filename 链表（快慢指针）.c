@@ -27,7 +27,7 @@ node* insertnode(node *tail,int e){
     p->next=NULL;
     return p;
 }
-
+//双指针
 int finddata(node *l,int k){
     node *fast=l->next;
     node *slow=l->next;

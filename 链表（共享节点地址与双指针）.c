@@ -39,7 +39,7 @@ int listlen(node *l){
     }
     return len;
 }
-
+//快慢指针（双指针）
 char findcommend(node* list1,node*list2){
     int step=abs(listlen(list1)-listlen(list2));
     node *fast,*slow;
@@ -74,7 +74,7 @@ int main()
     node *n=newnode('n');
     node *g=newnode('g');
     i->next=n;
-    n->next=g;
+    n->next=g;//共享地址的node!!!
     node *list1=initial();
     node *list2=initial();
     node *tail1=gettail(list1);

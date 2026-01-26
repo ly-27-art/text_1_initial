@@ -28,7 +28,7 @@ node *insertelem(node *tail,int e){
     p->next=NULL;
     return p;
 }
-
+//重整链表（让 1-2-3-4-5-6 变成 1-6-2-5-3-4 即 1-n-2-(n-1)-3-(n-2)-4-......）
 void reorderlist(node *l){
     node *fast=l->next;
     node *slow=l;

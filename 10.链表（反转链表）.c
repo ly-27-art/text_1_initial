@@ -28,9 +28,9 @@ node *insertelem(node *tail,int e){
     p->next=NULL;
     return p;
 }
-
+//反转链表
 node *reverselist(node *l){
-    node *first=NULL;
+    node *first=NULL;//关键步骤,first不能为任何一节点,必须为NULL,不然链表会循环
     node *second=l->next;
     node *third;
     while(second!=NULL){
@@ -40,7 +40,7 @@ node *reverselist(node *l){
         second=third;
     }
     node *final=initial();
-    final->next=first;
+    final->next=first;//加个头
     return final;
 }
 

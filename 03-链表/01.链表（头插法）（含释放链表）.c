@@ -30,7 +30,7 @@ int insertnode(node *l,int posi,int e){
     node *p=l;
     int i=0;
     //遍历链表找到插入位置的前驱节点
-    while(i<=posi-2){
+    while(i<=posi-2){//i<posi-1
         p=p->next;
         i++;
         if(p==NULL){
@@ -50,7 +50,7 @@ int deletenode(node *l,int posi){
     node *p=l;
     int i=0;
     //遍历链表找到插入位置的前驱节点
-    while(i<=posi-2){
+    while(i<=posi-2){//i<posi-1
         p=p->next;
         i++;
         if(p==NULL){

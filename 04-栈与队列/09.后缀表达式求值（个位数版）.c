@@ -11,14 +11,14 @@ typedef enum{
     left_pare,right_pare,add,sub,mul,divi,mod,eos,num
 }contenttype;
 
-char expre[]="82/2+56*-";
-
 stack *initial(){
     stack *s=(stack*)malloc(sizeof(stack));
     s->data=(int*)malloc(sizeof(int)*MAXSIZE);
     s->top=-1;
     return s;
 }
+
+char expre[]="82/2+56*-";
 
 int isEmpty(stack *s){
     if(s->top==-1){
@@ -39,21 +39,12 @@ int push(stack *s,int e){
 }
 
 int pop(stack *s,int *e){
-     if(isEmpty(s)){
-        printf("empty");
-        return 0;
-    }
-    *e=s->data[s->top];
-    s->top--;
-    return 1;
-}
-
-int gettop(stack *s,int *e){
     if(isEmpty(s)){
         printf("empty");
         return 0;
     }
     *e=s->data[s->top];
+    s->top--;
     return 1;
 }
 
@@ -69,17 +60,19 @@ contenttype gettoken(char *symbol,int *index){
         case '/': return divi;
         case '%': return mod;
         case '\0': return eos;
-        default: return num;
+        default : return num;
     }
 }
 
 int eval(stack *s){
-    char symbol;
-    int op1,op2;
-    int index=0;
+    int index=0;//此时的字符串对应下标
+    char symbol;//接收此时的字符
+
     contenttype token;
-    token=gettoken(&symbol,&index);
-    int result;
+    token=gettoken(&symbol,&index);//判断字符
+
+    int op1,op2;//接收出栈的两个数
+    int result;//接收结果
     while(token!=eos){
         if(token==num){
             push(s,symbol-'0');
@@ -102,14 +95,14 @@ int eval(stack *s){
                 case mod:
                 push(s,op1%op2);
                 break;
-                default:
+                default :
                 break;
             }
         }
         token=gettoken(&symbol,&index);
     }
     pop(s,&result);
-    printf("%d\n",result);
+    printf("%d",result);
     return 1;
 }
 
@@ -117,5 +110,7 @@ int main()
 {
     stack *s=initial();
     eval(s);
+    free(s->data);
+    free(s);
     return 0;
 }

@@ -18,7 +18,7 @@ stack *initial(){
     return s;
 }
 
-char expre[]="12 3 / 25 + 6 *";
+char expre[]="82/2+56*-";
 
 int isEmpty(stack *s){
     if(s->top==-1){
@@ -27,7 +27,7 @@ int isEmpty(stack *s){
         return 0;
     }
 }
-
+//进栈的为数字
 int push(stack *s,int e){
     if(s->top>=MAXSIZE-1){
         printf("full");
@@ -49,19 +49,8 @@ int pop(stack *s,int *e){
 }
 
 contenttype gettoken(char *symbol,int *index){
-
-    while (expre[*index] == ' ') {
-        (*index)++;
-    }//跳过空格
-
     *symbol=expre[*index];
-
-    if(*symbol>='0'&&*symbol<='9'){
-        return num;
-    }//当symbol等于num时index不进行任何操作
-
-    *index+=1;//symbol为运算符时index加1
-
+    *index+=1;
     switch(*symbol){
         case '(': return left_pare;
         case ')': return right_pare;
@@ -71,7 +60,7 @@ contenttype gettoken(char *symbol,int *index){
         case '/': return divi;
         case '%': return mod;
         case '\0': return eos;
-        default : return ;
+        default : return num;
     }
 }
 
@@ -84,24 +73,12 @@ int eval(stack *s){
 
     int op1,op2;//接收出栈的两个数
     int result;//接收结果
-
     while(token!=eos){
-        
         if(token==num){
-            int value=0;
-
-            while(expre[index]>='0'&&expre[index]<='9'){
-                value=value*10+(expre[index]-'0');
-                index++;
-            }//多位数压栈
-
-            push(s,value);
-
+            push(s,symbol-'0');
         }else{
-
             pop(s,&op2);
             pop(s,&op1);
-
             switch(token){
                 case add:
                 push(s,op1+op2);
@@ -124,7 +101,6 @@ int eval(stack *s){
         }
         token=gettoken(&symbol,&index);
     }
-
     pop(s,&result);
     printf("%d",result);
     return 1;

@@ -10,7 +10,7 @@ typedef struct treenode{
 }treenode;
 
 
-char str[]="ABDH#K###E##CFI###G#J##";
+char str[]="ABDH#K###E##CFI###G#J##";  //前序造的树
 int idx=0;
 
 

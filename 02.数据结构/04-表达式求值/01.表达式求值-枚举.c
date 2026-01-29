@@ -1,5 +1,5 @@
 #include <stdio.h>
-
+//枚举结构体
 enum weekday{
     mon,tue,wed,thu,fri,sat,sun
 //   0   1   2   3   4   5   6

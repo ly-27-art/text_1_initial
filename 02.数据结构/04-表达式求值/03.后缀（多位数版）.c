@@ -74,7 +74,7 @@ contenttype gettoken(char *symbol,int *index){
         default : return ;
     }
 }
-
+//输出计算结果
 int eval(stack *s){
     int index=0;   //此时的字符串对应下标
     char symbol;   //接收此时的字符

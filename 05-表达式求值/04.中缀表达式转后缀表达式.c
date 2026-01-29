@@ -58,7 +58,7 @@ int pop(stack *s,int *e){
 
 contenttype gettoken(char *symbol,int *index){
     *symbol=expre[*index];
-    *index+=1;
+    *index+=1;  //'*'的运算符优先级高于'+='，低于'++'
     switch(*symbol){
         case '(': return left_pare;
         case ')': return right_pare;

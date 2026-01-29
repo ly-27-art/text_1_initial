@@ -58,9 +58,9 @@ contenttype gettoken(char *symbol,int *index){
 
     if(*symbol>='0'&&*symbol<='9'){
         return num;
-    }//当symbol等于num时index不进行任何操作
+    }   //当symbol等于num时index不进行任何操作
 
-    *index+=1;//symbol为运算符时index加1
+    *index+=1;   //symbol为运算符时index加1
 
     switch(*symbol){
         case '(': return left_pare;
@@ -76,14 +76,14 @@ contenttype gettoken(char *symbol,int *index){
 }
 
 int eval(stack *s){
-    int index=0;//此时的字符串对应下标
-    char symbol;//接收此时的字符
+    int index=0;   //此时的字符串对应下标
+    char symbol;   //接收此时的字符
 
     contenttype token;
-    token=gettoken(&symbol,&index);//判断字符
+    token=gettoken(&symbol,&index);   //判断字符
 
-    int op1,op2;//接收出栈的两个数
-    int result;//接收结果
+    int op1,op2;   //接收出栈的两个数
+    int result;   //接收结果
 
     while(token!=eos){
 
@@ -93,7 +93,7 @@ int eval(stack *s){
             while(expre[index]>='0'&&expre[index]<='9'){
                 value=value*10+(expre[index]-'0');
                 index++;
-            }//多位数压栈
+            }   //多位数压栈
 
             push(s,value);
 

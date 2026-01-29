@@ -57,9 +57,9 @@ int deletenode(node *l,int posi){
             return 0;
         }
     }
-    node *q=p->next;//p->next即要删除节点的首地址
-    p->next=q->next;//所以q->next是要删除节点下一个节点的首地址
-    free(q);//释放内存（删除节点）
+    node *q=p->next;   //p->next即要删除节点的首地址
+    p->next=q->next;   //所以q->next是要删除节点下一个节点的首地址
+    free(q);   //释放内存（删除节点）
     return 1;
 }
 

@@ -74,7 +74,7 @@ int main()
     node *n=newnode('n');
     node *g=newnode('g');
     i->next=n;
-    n->next=g;//共享地址的node!!!
+    n->next=g;   //共享地址的node!!!
     node *list1=initial();
     node *list2=initial();
     node *tail1=gettail(list1);

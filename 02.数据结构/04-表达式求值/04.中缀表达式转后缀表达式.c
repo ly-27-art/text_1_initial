@@ -99,17 +99,17 @@ int printtoken(contenttype token){
 //中转后关键函数
 void postfix(stack *s){
 
-    int in_stack[]={0,19,12,12,13,13,13,0};//栈内元素优先级
-    int out_stack[]={20,19,12,12,13,13,13,0};//栈内元素优先级
+    int in_stack[]={0,19,12,12,13,13,13,0};   //栈内元素优先级
+    int out_stack[]={20,19,12,12,13,13,13,0};   //栈内元素优先级
 
-    int index=0;//此时的字符串对应下标
-    int e;//接收栈顶元素并用printtoken输出
-    char symbol;//接收此时的字符
+    int index=0;   //此时的字符串对应下标
+    int e;   //接收栈顶元素并用printtoken输出
+    char symbol;   //接收此时的字符
 
-    push(s,eos);//在开始前先在栈中压入优先级最低的元素，方便之后运算符进栈
+    push(s,eos);   //在开始前先在栈中压入优先级最低的元素，方便之后运算符进栈
 
     contenttype token;
-    token=gettoken(&symbol,&index);//判断字符
+    token=gettoken(&symbol,&index);   //判断字符
 
     while(token!=eos){
 
@@ -119,11 +119,11 @@ void postfix(stack *s){
 
         else if(token==right_pare){
 
-            while(s->data[s->top]!=left_pare){//直到遇到左括号之前所有元素出栈
+            while(s->data[s->top]!=left_pare){   //直到遇到左括号之前所有元素出栈
                 pop(s,&e);
                 printtoken(e);
             }
-            pop(s,&e);//左括号出栈
+            pop(s,&e);   //左括号出栈
 
         }
         else{
@@ -137,7 +137,7 @@ void postfix(stack *s){
         token=gettoken(&symbol,&index);
 
     }
-    while(!isEmpty(s)){//出栈剩余运算符
+    while(!isEmpty(s)){   //出栈剩余运算符
         pop(s,&e);
         if(e!=eos){
             printtoken(e);

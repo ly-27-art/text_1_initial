@@ -42,8 +42,8 @@ int listlen(node *l){
 //(哈希表雏形)利用另一个数组记录是否出现过相同数（这道题是绝对值）
 void removenode(node *l,int len){
     node *p=l;
-    int index;//做数组下标
-    int *q=(int*)malloc(sizeof(int)*(len+1));//记录数组（data当下标）
+    int index;   //做数组下标
+    int *q=(int*)malloc(sizeof(int)*(len+1));   //记录数组（data当下标）
     for(int i=0;i<len+1;i++){
         *(q+i)=0;
     }
@@ -58,7 +58,7 @@ void removenode(node *l,int len){
             free(temp);
         }
     }
-    free(q);//记得释放堆内存
+    free(q);   //记得释放堆内存
 }
 
 void listprint(node *l){

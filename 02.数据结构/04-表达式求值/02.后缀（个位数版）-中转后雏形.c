@@ -65,14 +65,14 @@ contenttype gettoken(char *symbol,int *index){
 }
 
 int eval(stack *s){
-    int index=0;//此时的字符串对应下标
-    char symbol;//接收此时的字符
+    int index=0;   //此时的字符串对应下标
+    char symbol;   //接收此时的字符
 
     contenttype token;
-    token=gettoken(&symbol,&index);//判断字符
+    token=gettoken(&symbol,&index);   //判断字符
 
-    int op1,op2;//接收出栈的两个数
-    int result;//接收结果
+    int op1,op2;   //接收出栈的两个数
+    int result;   //接收结果
     while(token!=eos){
         if(token==num){
             push(s,symbol-'0');

@@ -84,7 +84,7 @@ void inorderthread(threadtree *head,threadtree T){
         prev->rchild = *head;
         prev->rtag = 1;
 
-        //头结点右孩子指向最后一个节点（非必须的，是为dac）
+        //头结点右孩子指向最后一个节点（非必须的，是为代码对称性与完整性，方便之后操作）
         (*head)->rchild = prev;
     }
 }

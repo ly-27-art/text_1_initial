@@ -75,7 +75,9 @@ void create_graph(matrix_graph *g){
 
 //广度优先遍历（breadth first search）
 void BFS(matrix_graph g){
-    int i=0;
+
+    int i=0;  //压栈与出栈的承接变量
+
     visited[i] = 1;
     printf("%c ",g.vertex[i]);
 

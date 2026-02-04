@@ -92,7 +92,7 @@ void sortedges(edge edges[],int edge_num){
     }
 }
 
-//并查集，查找
+//类并查集，查找
 int find(int parent[],int index){
     while(parent[index] > 0){
         index = parent[index];  //找到对应的根
@@ -119,7 +119,7 @@ void kruskal(matrix_graph g){
 
     sortedges(edges,g.edge_num);
 
-    int parent[MAXSIZE];  //并查集，根数组
+    int parent[MAXSIZE];  //伪并查集
 
     for(int i = 0 ; i < g.edge_num ; i++){
         parent[i] = 0;

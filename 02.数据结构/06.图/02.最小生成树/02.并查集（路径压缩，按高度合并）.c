@@ -3,7 +3,7 @@
 
 
 int parent[MAXN];  // 保存每个结点的父亲
-int h[MAXN];
+int h[MAXN];  //保存每个树的高度
 
 /* 初始化 */
 void initial(int n){

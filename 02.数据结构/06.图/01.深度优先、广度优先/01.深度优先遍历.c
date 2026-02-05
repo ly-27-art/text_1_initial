@@ -88,6 +88,6 @@ int main()
 {
     matrix_graph g;
     create_graph(&g);
-    DFS(g,0);
+    DFS(g,0);  // 0 表示从 A 开始
     return 0;
 }

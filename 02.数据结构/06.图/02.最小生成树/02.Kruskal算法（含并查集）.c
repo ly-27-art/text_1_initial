@@ -14,13 +14,14 @@ typedef struct {
 
 /* ---------- 边结构 ---------- */
 typedef struct {
-    int u;          // 起点下标
-    int v;          // 终点下标
+    int begin;          // 起点下标
+    int end;          // 终点下标
     int weight;     // 权值
 } Edge;
 
 /* ---------- 并查集 ---------- */
 int parent[MAXSIZE];
+int s[MAXSIZE];
 
 int find(int x) {
     if (parent[x] == x){
@@ -33,7 +34,14 @@ void unite(int x, int y) {
     int fx = find(x);
     int fy = find(y);
     if (fx != fy){
-        parent[fy] = fx;
+        if(s[fx] <= s[fy]){
+            parent[fx] = fy;
+            s[fy] += s[fx];
+        }
+        else{
+            parent[fy] = fx;
+            s[fx] += s[fy];
+        }
     }
 }
 
@@ -99,8 +107,8 @@ void kruskal(matrix_graph *g) {
     for (int i = 0; i < g->vertex_num; i++) {
         for (int j = i + 1; j < g->vertex_num; j++) {
             if (g->arc[i][j] != 0 && g->arc[i][j] != MAX) {
-                edges[edge_count].u = i;
-                edges[edge_count].v = j;
+                edges[edge_count].begin = i;
+                edges[edge_count].end = j;
                 edges[edge_count].weight = g->arc[i][j];
                 edge_count++;
             }
@@ -108,8 +116,10 @@ void kruskal(matrix_graph *g) {
     }
 
     /* 2. 初始化并查集 */
-    for (int i = 0; i < g->vertex_num; i++)
+    for (int i = 0; i < g->vertex_num; i++){
         parent[i] = i;
+        s[i] = 1;
+    }
 
     /* 3. 按权值排序（冒泡排序） */
     for (int i = 0; i < edge_count - 1; i++) {
@@ -123,19 +133,16 @@ void kruskal(matrix_graph *g) {
     }
 
     /* 4. 构造最小生成树 */
-    int mst_edges = 0;
-    printf("Kruskal 最小生成树：\n");
+    int mst_edges = 0;  //当前已经选进最小生成树（MST）的边数
+    printf("Kruskal MST:\n");
 
     for (int i = 0; i < edge_count && mst_edges < g->vertex_num - 1; i++) {
-        int u = edges[i].u;
-        int v = edges[i].v;
+        int b = edges[i].begin;
+        int e = edges[i].end;
 
-        if (find(u) != find(v)) {
-            unite(u, v);
-            printf("(%c,%c) 权值=%d\n",
-                   g->vertex[u],
-                   g->vertex[v],
-                   edges[i].weight);
+        if (find(b) != find(e)) {
+            unite(b, e);
+            printf("(%c,%c) weight=%d\n",g->vertex[b],g->vertex[e],edges[i].weight);
             mst_edges++;
         }
     }

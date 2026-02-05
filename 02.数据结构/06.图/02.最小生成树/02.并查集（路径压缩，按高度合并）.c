@@ -6,7 +6,7 @@ int parent[MAXN];  // 保存每个结点的父亲
 int h[MAXN];  //保存每个树的高度
 
 /* 初始化 */
-void initial(int n){
+void initial(int n){  // n 为元素个数
     for(int i = 0 ; i < n ; i++){
         parent[i] = i;
         h[i] = 1;
@@ -19,7 +19,7 @@ int find(int x){
         return x;
     }
     else{
-        return parent[x] = find(parent[x]);  //关键
+        return parent[x] = find(parent[x]);  //关键（路径压缩）
     }
 }
 
@@ -29,13 +29,13 @@ void Union(int x,int y){
     int rooty = find(y);
     if(rootx != rooty){
         if(h[rootx] < h[rooty]){
-            parent[rootx] = parent[rooty];
+            parent[rootx] = rooty;  //按高度合并
         }
         else if(h[rootx] > h[rooty]){
-            parent[rooty] = parent[rootx];
+            parent[rooty] = rootx;
         }
         else{
-            parent[rootx] = parent[rooty];
+            parent[rootx] = rooty;
             h[rooty]++;
         }
     }

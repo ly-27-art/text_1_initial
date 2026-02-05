@@ -113,6 +113,7 @@ void prim(matrix_graph *g){
                 weight[j] = g->arc[k][j];
                 vex_index[j] = k;
             }
+            
         }
     }
 }
